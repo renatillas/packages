@@ -176,7 +176,7 @@ fn package_button(icon_location: String, destination: String, label: String) {
   ])
 }
 
-fn format_number(n: Int) -> String {
+pub fn format_number(n: Int) -> String {
   case n {
     _ if n < 1000 -> int.to_string(n)
     _ if n < 10_000 -> {
