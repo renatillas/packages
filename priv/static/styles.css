@@ -234,6 +234,44 @@ body.theme-dark .page-nav .toggle-dark {
   color: var(--text-highlight);
 }
 
+.package-item .package-downloads {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  justify-content: flex-end;
+}
+
+.package-item .download-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.package-item .download-count {
+  font-size: 1.1rem;
+  font-weight: var(--font-medium);
+  color: var(--text-highlight);
+}
+
+.package-item .download-label {
+  font-size: 0.7rem;
+  color: var(--text-regular);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+@media screen and (max-width: 991px) {
+  .package-item .package-downloads {
+    justify-content: flex-start;
+    margin-bottom: 0.2rem;
+  }
+  
+  .package-item .download-stat {
+    align-items: flex-start;
+  }
+}
+
 .package-item:not(:last-child) {
   border-bottom: var(--card-border) 1px solid;
 }

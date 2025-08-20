@@ -143,6 +143,20 @@ fn package_list_item(package: Package) {
       ]),
     ]),
     html.aside([], [
+      html.div([class("package-downloads")], [
+        html.div([class("download-stat")], [
+          html.span([class("download-count")], [
+            text(format_number(package.downloads_all)),
+          ]),
+          html.span([class("download-label")], [text("total")]),
+        ]),
+        html.div([class("download-stat")], [
+          html.span([class("download-count")], [
+            text(format_number(package.downloads_recent)),
+          ]),
+          html.span([class("download-label")], [text("recent")]),
+        ]),
+      ]),
       html.p([class("package-update-time")], [
         element.text("Updated "),
         html.span([], [element.text(format_date(package.updated_in_hex_at))]),
@@ -159,6 +173,36 @@ fn package_button(icon_location: String, destination: String, label: String) {
     ]),
     text(label),
   ])
+}
+
+pub fn format_number(n: Int) -> String {
+  case n {
+    _ if n < 1000 -> int.to_string(n)
+    _ if n < 10_000 -> {
+      let thousands = n / 1000
+      let hundreds = { n % 1000 } / 100
+      case hundreds {
+        0 -> int.to_string(thousands) <> "k"
+        _ -> int.to_string(thousands) <> "." <> int.to_string(hundreds) <> "k"
+      }
+    }
+    _ if n < 1_000_000 -> {
+      let thousands = n / 1000
+      int.to_string(thousands) <> "k"
+    }
+    _ -> {
+      let millions = n / 1_000_000
+      let hundreds_of_thousands = { n % 1_000_000 } / 100_000
+      case hundreds_of_thousands {
+        0 -> int.to_string(millions) <> "M"
+        _ ->
+          int.to_string(millions)
+          <> "."
+          <> int.to_string(hundreds_of_thousands)
+          <> "M"
+      }
+    }
+  }
 }
 
 fn format_date(datetime: Timestamp) -> String {
