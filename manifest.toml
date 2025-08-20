@@ -54,4 +54,4 @@ mist = { version = ">= 5.0.3 and < 6.0.0" }
 porter_stemmer = { version = ">= 1.0.0 and < 2.0.0" }
 simplifile = { version = ">= 2.2.0 and < 3.0.0" }
 storail = { version = ">= 3.0.0 and < 4.0.0" }
-wisp = { version = ">= 1.2.0 and < 2.0.0" }
+wisp = { version = ">= 2.0.0-rc1 and < 3.0.0" }

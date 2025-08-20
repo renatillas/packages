@@ -3,7 +3,6 @@ import gleam/json
 import gleam/list
 import gleam/option
 import gleam/string
-import gleam/string_tree.{type StringTree}
 import gleam/time/duration
 import gleam/time/timestamp.{type Timestamp}
 import lustre/attribute.{attribute, class}
@@ -16,7 +15,7 @@ pub fn packages_list(
   packages: List(Package),
   total_package_count: Int,
   search_term: String,
-) -> StringTree {
+) -> String {
   html.div(
     [attribute.class("content")],
     search_aware_package_list(packages, total_package_count, search_term),
@@ -31,7 +30,7 @@ pub type Stats {
   )
 }
 
-pub fn internet_points(stats: Stats) -> StringTree {
+pub fn internet_points(stats: Stats) -> String {
   html.div([], [
     html.script([attribute.src("https://cdn.plot.ly/plotly-2.30.0.min.js")], ""),
     line_chart("Package count", stats.package_counts),
@@ -230,8 +229,9 @@ fn format_date(datetime: Timestamp) -> String {
   }
 }
 
-fn layout(content: Element(Nil)) -> StringTree {
-  html.html([attribute("lang", "en")], [
+fn layout(content: Element(Nil)) -> String {
+  "<!DOCTYPE html>"
+  <> html.html([attribute("lang", "en")], [
     html.head([], [
       html.meta([attribute("charset", "utf-8")]),
       html.meta([
